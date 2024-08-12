@@ -1,4 +1,4 @@
-# Setup IAM User for Kubernetes
+## Setup IAM User for Kubernetes
 
 Follow this link to set up: [Kubernetes Operations (kops) on AWS](https://kops.sigs.k8s.io/getting_started/aws/)
 
@@ -66,17 +66,22 @@ kops create cluster \
 --master-count 1
 ```
 ## View the cluster details
+```
 kops get cluster
-
+```
 ## Update the cluster with the latest configuration
+```
 kops update cluster --name=${KOPS_CLUSTER_NAME} --yes --admin
-
+```
 ## Validate the cluster status, waiting up to 10 minutes
+```
 kops validate cluster --wait 10m
-
+```
 ## SSH into the master node
+```
 ssh -i ~/.ssh/id_rsa ubuntu@api.jenkinstraining.com
-
+```
 ## Delete the Kubernetes cluster
+```
 kops delete cluster --yes
-
+```
