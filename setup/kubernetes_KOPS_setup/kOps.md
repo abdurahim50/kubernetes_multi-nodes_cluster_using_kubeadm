@@ -36,20 +36,25 @@ export KOPS_STATE_STORE=s3://scienteh.in.k8s
 ```
 Add these variables to your .bashrc file for persistent configuration:
 
-# Edit .bashrc
+## Edit .bashrc
+```
 vim /root/.bashrc
-
-# Add the following lines to .bashrc
+```
+## Add the following lines to .bashrc
+```
 export KOPS_CLUSTER_NAME=jenkinstraining.com
 export KOPS_STATE_STORE=s3://scienteh.in.k8s
-
-# Apply the changes
+```
+## Apply the changes
+```
 source /root/.bashrc
-
-# Generate an SSH key pair
+```
+## Generate an SSH key pair
+```
 ssh-keygen
-
-# Create a Kubernetes cluster using kops
+```
+## Create a Kubernetes cluster using kops
+```
 kops create cluster \
 --state=${KOPS_STATE_STORE} \
 --node-count=2 \
@@ -59,18 +64,19 @@ kops create cluster \
 --name=${KOPS_CLUSTER_NAME} \
 --dns private \
 --master-count 1
-# View the cluster details
+```
+## View the cluster details
 kops get cluster
 
-# Update the cluster with the latest configuration
+## Update the cluster with the latest configuration
 kops update cluster --name=${KOPS_CLUSTER_NAME} --yes --admin
 
-# Validate the cluster status, waiting up to 10 minutes
+## Validate the cluster status, waiting up to 10 minutes
 kops validate cluster --wait 10m
 
-# SSH into the master node
+## SSH into the master node
 ssh -i ~/.ssh/id_rsa ubuntu@api.jenkinstraining.com
 
-# Delete the Kubernetes cluster
+## Delete the Kubernetes cluster
 kops delete cluster --yes
 
